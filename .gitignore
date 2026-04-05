@@ -4,8 +4,6 @@ __pycache__/
 *$py.class
 
 # Data & Artifacts
-data/processed/*
-data/artifacts/*
 !data/processed/.gitkeep
 !data/artifacts/.gitkeep
 
