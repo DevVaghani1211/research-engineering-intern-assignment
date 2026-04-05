@@ -26,86 +26,101 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Dark theme custom CSS for that premium research-tool feel
+# Enterprise technical theme for a serious research-tool feel
 st.markdown("""
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;700&display=swap');
     
     html, body, [class*="css"]  {
-        font-family: 'Outfit', sans-serif;
+        font-family: 'Inter', sans-serif;
     }
+    
+    /* Force extremely dark slate background */
+    .stApp {
+        background-color: #0A0E17;
+    }
+    
     .reportview-container .main .block-container{
         padding-top: 2rem;
     }
     
-    /* Premium Gradient Title */
-    .title-gradient {
-        background: -webkit-linear-gradient(45deg, #FF6B6B, #8A2BE2);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
+    /* Serious Intelligence Title */
+    .title-technical {
+        font-family: 'JetBrains Mono', monospace;
+        color: #E2E8F0;
+        font-size: 2.2rem;
         font-weight: 700;
-        font-size: 3rem;
-        margin-bottom: 0px;
-        padding-bottom: 0px;
+        text-transform: uppercase;
+        letter-spacing: -1px;
+        border-left: 6px solid #00E5FF; /* Cyan Accent */
+        padding-left: 15px;
+        margin-bottom: 0;
     }
     
-    /* Interactive Metric Cards */
+    /* Brutalist Metric Cards */
     .metric-card {
-        background: linear-gradient(145deg, #1e1e24, #2a2a35);
+        background-color: #111827;
         padding: 20px;
-        border-radius: 12px;
-        border: 1px solid #333344;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        border: 1px solid #1F2937;
+        border-top: 3px solid #3B82F6;
+        transition: all 0.2s ease;
         margin-bottom: 10px;
     }
     .metric-card:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 8px 25px rgba(138, 43, 226, 0.3);
-        border: 1px solid #8A2BE2;
+        border-color: #00E5FF;
+        box-shadow: 0 0 15px rgba(0, 229, 255, 0.1);
     }
     .metric-card h4 {
-        color: #A0A0B0;
-        font-size: 0.9rem;
+        color: #9CA3AF;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 0.8rem;
         text-transform: uppercase;
         letter-spacing: 1px;
         margin-top: 0;
     }
     .metric-card h2 {
-        color: #FFFFFF;
-        font-size: 2.2rem;
+        color: #F8FAFC;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 2.5rem;
         margin-bottom: 0;
-        font-weight: 600;
+        font-weight: 700;
     }
     
-    /* Glassmorphism Assistant Card */
+    /* Technical Assistant Card */
     .assistant-card {
-        background: rgba(45, 45, 68, 0.4);
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
+        background-color: #111827;
         padding: 24px;
-        border-radius: 16px;
+        border: 1px solid #1F2937;
+        border-left: 4px solid #F59E0B; /* Warning/Analysis Orange */
         margin-bottom: 25px;
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        border-top: 4px solid #8A2BE2;
-        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
-        color: #E0E0E0;
+        color: #D1D5DB;
         line-height: 1.6;
+        font-size: 0.95rem;
     }
     .assistant-card strong {
-        color: #FFFFFF;
+        color: #F8FAFC;
     }
     
-    /* Suggestion Buttons adjustments */
+    /* Sharp Buttons */
     .stButton>button {
-        border-radius: 20px;
-        border: 1px solid #8A2BE2;
-        transition: all 0.3s;
+        border-radius: 0px !important;
+        border: 1px solid #1E293B !important;
+        background-color: #0F172A !important;
+        color: #60A5FA !important;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 0.85rem;
+        transition: all 0.2s;
     }
     .stButton>button:hover {
-        background-color: #8A2BE2;
-        color: #FFF;
-        box-shadow: 0 0 10px #8A2BE2;
+        background-color: rgba(59, 130, 246, 0.1) !important;
+        color: #00E5FF !important;
+        border-color: #00E5FF !important;
+    }
+    
+    /* Sidebar styling overrides */
+    section[data-testid="stSidebar"] {
+        background-color: #0F172A;
+        border-right: 1px solid #1E293B;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -152,8 +167,8 @@ n_clusters = st.sidebar.slider("Number of Topic Clusters", 2, 10, 5)
 # ---------------------------------------------------------
 # Main UI
 # ---------------------------------------------------------
-st.markdown('<h1 class="title-gradient">Narrative Intelligence Dashboard</h1>', unsafe_allow_html=True)
-st.markdown("<p style='color: #A0A0B0; font-size: 1.1rem; margin-bottom: 2rem;'>Investigate how concepts, links, and narratives spread across Reddit communities.</p>", unsafe_allow_html=True)
+st.markdown('<h1 class="title-technical">NARRATIVE INTELLIGENCE SYS.</h1>', unsafe_allow_html=True)
+st.markdown("<p style='color: #9CA3AF; font-family: \"JetBrains Mono\", monospace; font-size: 0.85rem; margin-bottom: 2rem; margin-top: 10px;'>» MAPPING SUB-NARRATIVE TOPOLOGIES AND DOMAIN AMPLIFICATION VECTORS</p>", unsafe_allow_html=True)
 
 # Search Bar
 query = st.text_input("Enter a keyword, concept, or domain URL to begin investigation...", 
